@@ -1,6 +1,3 @@
 function truncateString(str, num) {
-  if (str.length > num) {
-    str = str.slice(0, num) + '...';
-  }
-  return str;
+  return str.length > num ? str.slice(0, num) + '...' : str;
 }
