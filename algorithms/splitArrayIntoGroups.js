@@ -1,7 +1,7 @@
 function chunkArrayInGroups(arr, size) {
   let newArray = [];
-  for (let i = 0; i < arr.length; i += size) {
-    newArray.push(arr.slice(i, i +size))
+  while(arr.length > 0) {
+    newArray.push(arr.splice(0, size))
   }
   return newArray;
 }
