@@ -1,0 +1,5 @@
+function frankenSplice(arr1, arr2, n) {
+  let arr2Copy = arr2.slice();
+  arr2Copy.splice(n, 0, ...arr1);
+  return arr2Copy;
+}
