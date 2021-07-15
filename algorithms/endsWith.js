@@ -1,4 +1,1 @@
-function confirmEnding(str, target) {
-  return str.slice(str.length - target.length) === target;
-}
-
+const confirmEnding = (str, target) => str.slice(str.length - target.length) === target;
