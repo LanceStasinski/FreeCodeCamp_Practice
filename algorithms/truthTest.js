@@ -6,3 +6,5 @@ function findElement(arr, func) {
   }
   return undefined
 }
+
+//can also use arr.find(func)
