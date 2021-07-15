@@ -1,10 +1,3 @@
 function repeatStringNumTimes(str, num) {
-  let largeStr = ''
-
-  while(num > 0) {
-    largeStr += str;
-    num--;
-  }
-  return largeStr;
+  return num > 0 ? str + repeatStringNumTimes(str, num - 1) : '';
 }
-
