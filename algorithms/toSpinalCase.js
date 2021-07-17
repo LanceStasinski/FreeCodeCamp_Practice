@@ -1,0 +1,1 @@
+const spinalCase = str => str.split(/\s|(?=[A-Z\s])/).join('-').toLowerCase()
