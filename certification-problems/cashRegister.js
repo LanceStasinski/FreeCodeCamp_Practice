@@ -25,77 +25,70 @@ function checkCashRegister(price, cash, cid) {
     this.sum = parseFloat((this.sum - 100).toFixed(2));
     this.changeDue = parseFloat((this.changeDue - 100).toFixed(2));
     moneyToGive['ONE HUNDRED'] = parseFloat((moneyToGive['ONE HUNDRED'] + 100).toFixed(2));
-    return this.giveMoney()
   }
   moneyInRegister.giveTwenty = function () {
    this.TWENTY = parseFloat((this.TWENTY - 20).toFixed(2));
    this.sum = parseFloat((this.sum - 20).toFixed(2));
    this.changeDue = parseFloat((this.changeDue - 20).toFixed(2));
    moneyToGive.TWENTY = parseFloat((moneyToGive.TWENTY + 20).toFixed(2));
-   return this.giveMoney()
   }
   moneyInRegister.giveTen = function () {
     this.TEN = parseFloat((this.TEN - 10).toFixed(2));
     this.sum = parseFloat((this.sum - 10).toFixed(2));
     this.changeDue = parseFloat((this.changeDue - 10).toFixed(2));
     moneyToGive.TEN = parseFloat((moneyToGive.TEN + 10).toFixed(2));
-    return this.giveMoney()
   }
   moneyInRegister.giveFive = function () {
     this.FIVE = parseFloat((this.FIVE - 5).toFixed(2));
     this.sum = parseFloat((this.sum - 5).toFixed(2));
     this.changeDue = parseFloat((this.changeDue - 5).toFixed(2));
     moneyToGive.FIVE = parseFloat((moneyToGive.FIVE + 5).toFixed(2));
-    return this.giveMoney()
   }
   moneyInRegister.giveOne = function () {
     this.ONE = parseFloat((this.ONE - 1).toFixed(2));
     this.sum = parseFloat((this.sum - 1).toFixed(2));
     this.changeDue = parseFloat((this.changeDue - 1).toFixed(2));
     moneyToGive = parseFloat((moneyToGive.ONE + 1).toFixed(2));
-    return this.giveMoney()
   }
   moneyInRegister.giveQuater = function () {
     this.QUARTER = parseFloat((this.QUARTER - 0.25).toFixed(2));
     this.sum = parseFloat((this.sum - 0.25).toFixed(2));
     this.changeDue = parseFloat((this.changeDue - 0.25).toFixed(2));
     moneyToGive = parseFloat((moneyToGive.QUARTER + 0.25).toFixed(2));
-    return this.giveMoney()
   }
   moneyInRegister.giveDime = function () {
     this.DIME = parseFloat((this.DIME - 0.10).toFixed(2));
     this.sum = parseFloat((this.sum - 0.10).toFixed(2));
     this.changeDue = parseFloat((this.changeDue - 0.10).toFixed(2));
     moneyToGive.DIME = parseFloat((moneyToGive.DIME + 0.10).toFixed(2));
-    return this.giveMoney()
   }
   moneyInRegister.giveNickel = function () {
     this.NICKEL = parseFloat((this.NICKEL - 0.05).toFixed(2));
     this.sum = parseFloat((this.sum - 0.05).toFixed(2));
     this.changeDue = parseFloat((this.changeDue - 0.05).toFixed(2));
     moneyToGive.NICKEL = parseFloat((moneyToGive.NICKEL + 0.05).toFixed(2));
-    return this.giveMoney()
   }
   moneyInRegister.givePenny = function () {
     this.PENNY = parseFloat((this.PENNY - 0.01).toFixed(2));
     this.sum = parseFloat((this.sum - 0.01).toFixed(2));
     this.changeDue = parseFloat((this.changeDue - 0.01).toFixed(2));
     moneyToGive.PENNY = parseFloat((moneyToGive.PENNY + 0.01).toFixed(2));
-    return this.giveMoney()
   }
   moneyInRegister.giveMoney = function () {
-    let fun = this.changeDue >= 100 && this['ONE HUNDRED'] >= 100 ? this.giveHundred
-    : this['ONE HUNDRED'] < 100 && this.changeDue >= 20 && this.TWENTY >= 20 ? this.giveTwenty
-    : this.TWENTY < 20 && this.changeDue >= 10 && this.TEN >= 10 ? this.giveTen
-    : this.TEN < 10 && this.changeDue >= 5 && this.FIVE >= 5 ? this.giveFive
-    : this.FIVE < 5 && this.changeDue >= 1 && this.ONE >= 1 ? this.giveOne
-    : this.ONE < 1 && this.changeDue >= 0.25 && this.QUARTER >= 0.25 ? this.giveQuater
-    : this.QUARTER < 0.25 && this.changeDue >= 0.10 && this.DIME >= 0.10 ? this.giveDime
-    : this.DIME < 0.10 && this.changeDue >= 0.05 && this.NICKEL >= 0.5 ? this.giveNickel
-    : this.NICKEL < 0.05 && this.changeDue >= 0.01 && this.PENNY >= 0.01 ? this.givePenny
-    : this.changeDue === 0 && this.sum > 0 ? this.open
-    : this.insufficient;
-    return fun();
+    while(this.sum >= 0 || this.changeDue >= 0) {
+      let fun = this.changeDue >= 100 && this['ONE HUNDRED'] >= 100 ? this.giveHundred
+      : this['ONE HUNDRED'] < 100 && this.changeDue >= 20 && this.TWENTY >= 20 ? this.giveTwenty
+      : this.TWENTY < 20 && this.changeDue >= 10 && this.TEN >= 10 ? this.giveTen
+      : this.TEN < 10 && this.changeDue >= 5 && this.FIVE >= 5 ? this.giveFive
+      : this.FIVE < 5 && this.changeDue >= 1 && this.ONE >= 1 ? this.giveOne
+      : this.ONE < 1 && this.changeDue >= 0.25 && this.QUARTER >= 0.25 ? this.giveQuater
+      : this.QUARTER < 0.25 && this.changeDue >= 0.10 && this.DIME >= 0.10 ? this.giveDime
+      : this.DIME < 0.10 && this.changeDue >= 0.05 && this.NICKEL >= 0.5 ? this.giveNickel
+      : this.NICKEL < 0.05 && this.changeDue >= 0.01 && this.PENNY >= 0.01 ? this.givePenny
+      : this.changeDue === 0 && this.sum > 0 ? this.open
+      : this.insufficient;
+      return fun();
+    }
   }
   moneyInRegister.closed = function () {
     return {status: 'CLOSED', change: cid}
